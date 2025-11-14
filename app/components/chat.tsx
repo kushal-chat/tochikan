@@ -92,72 +92,13 @@ export default function ChatBubble() {
   };  
 
   return (
-    <div className="fixed top-0 left-0 h-full flex z-50">
+    <div className="fixed bottom-0 h-20 w-60vw flex z-50">
       {/* Chat Window */}
-      <div className="bg-white shadow-2xl rounded-r-3xl overflow-hidden flex flex-col h-full w-[20vw] min-w-[300px]">
-        {/* Messages Container */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex gap-2 max-w-[85%] animate-slideIn ${
-                    message.isUser ? 'ml-auto flex-row-reverse' : 'mr-auto'
-                  }`}
-                >
-                  {/* Avatar */}
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-base flex-shrink-0 ${
-                      message.isUser
-                        ? 'bg-gradient-to-br from-purple-400 to-purple-600'
-                        : 'bg-gradient-to-br from-pink-400 to-red-500'
-                    }`}
-                  >
-                    {message.isUser ? '👤' : '🤖'}
-                  </div>
-
-                  {/* Bubble */}
-                  <div
-                    className={`px-3 py-2 rounded-2xl leading-relaxed text-sm ${
-                      message.isUser
-                        ? 'bg-blue-600 text-white rounded-br-sm'
-                        : 'bg-white text-gray-900 border border-gray-200 rounded-bl-sm shadow-sm'
-                    }`}
-                  >
-                    {message.text}
-                  </div>
-                </div>
-              ))}
-
-              {/* Typing Indicator */}
-              {isTyping && (
-                <div className="flex gap-2 max-w-[85%] mr-auto animate-slideIn">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-base flex-shrink-0 bg-gradient-to-br from-pink-400 to-red-500">
-                    🤖
-                  </div>
-                  <div className="px-3 py-2 rounded-2xl bg-white border border-gray-200 rounded-bl-sm shadow-sm">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <div ref={messagesEndRef} />
-            </div>
-
+      <div className="shadow-2xl rounded-r-4x0 overflow-hidden flex flex-col h-full w-[60vw] min-w-[300px]">
             {/* Input */}
-            <div className="p-3 bg-white border-t border-gray-200 flex-shrink-0">
+            <div className="grid gap-6 mb-6 md:grid-cols-2">
               <form onSubmit={handleSubmit} className="flex gap-2">
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type a message..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm outline-none focus:border-blue-600 transition-colors"
-                  disabled={isTyping}
-                />
+                <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Type a message..." className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" required />
                 <button
                   type="submit"
                   disabled={isTyping || !inputValue.trim()}
@@ -168,23 +109,6 @@ export default function ChatBubble() {
               </form>
             </div>
           </div>
-
-          <style jsx>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-slideIn {
-          animation: slideIn 0.3s ease-out;
-        }
-      `}</style>
     </div>
   );
 }

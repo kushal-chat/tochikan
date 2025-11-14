@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DotGothic16, Geist, Geist_Mono, Kiwi_Maru, Shippori_Mincho_B1 } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,21 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const dotGothic = DotGothic16({
+  weight: ['400'],
+  style: ['normal'],
+});
+
+const shipporiMincho = Shippori_Mincho_B1({
+  weight: ['400'],
+  style: ['normal'],
+});
+
+const kiwiMaru = Kiwi_Maru({
+  weight: ['400'],
+  style: ['normal'],
 });
 
 export const metadata: Metadata = {
